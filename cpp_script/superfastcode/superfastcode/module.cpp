@@ -1,42 +1,48 @@
 #include <Python.h>
 #include <Windows.h>
 #include <cmath>
+#include <stdlib.h>
+#include <ctime>
 
-const double e = 2.7182818284590452353602874713527;
-
-double sinh_impl(double x) {
-    return (1 - pow(e, (-2 * x))) / (2 * pow(e, -x));
+double doNothing(double a) {
+    a += 1.0;
+    a -= 1.0;
+    return a;
 }
 
-double cosh_impl(double x) {
-    return (1 + pow(e, (-2 * x))) / (2 * pow(e, -x));
-}
-
-PyObject* tanh_impl(PyObject* /* unused module reference */, PyObject* o) {
+PyObject* get_point_impl(PyObject*, PyObject* o) {
     double x = PyFloat_AsDouble(o);
-    double tanh_x = sinh_impl(x) / cosh_impl(x);
-    return PyFloat_FromDouble(tanh_x);
+    x = doNothing(x);
+    return PyFloat_FromDouble(x);
 }
 
-static PyMethodDef superfastcode_methods[] = {
-    // The first property is the name exposed to Python, fast_tanh
+PyObject* get_point2_impl(PyObject*, PyObject* o) {
+    double x = PyFloat_AsDouble(o);
+    return PyFloat_FromDouble(10*x);
+}
+
+// Creating the Python callable object
+static PyMethodDef getpoints_methods[] = {
+    // The first property is the name exposed to Python
     // The second is the C++ function with the implementation
     // METH_O means it takes a single PyObject argument
-    { "fast_tanh", (PyCFunction)tanh_impl, METH_O, nullptr },
+    { "c_get_point", (PyCFunction)get_point_impl, METH_O, nullptr },
+    { "c_get_point2", (PyCFunction)get_point2_impl, METH_O, nullptr },
 
     // Terminate the array with an object containing nulls.
     { nullptr, nullptr, 0, nullptr }
 };
 
-static PyModuleDef superfastcode_module = {
+// Creating Python Module
+static PyModuleDef getpoints_module = {
     PyModuleDef_HEAD_INIT,
-    "superfastcode",                        // Module name to use with Python import statements
-    "Provides some functions, but faster",  // Module description
+    "getpoints",                // Module name to use with Python import statements
+    "Get 68 points shape in C++",   // Module description
     0,
-    superfastcode_methods                   // Structure that defines the methods of the module
+    getpoints_methods           // Structure that defines the methods of the module
 };
 
-PyMODINIT_FUNC PyInit_superfastcode() {
-    return PyModule_Create(&superfastcode_module);
+// Making the shared object importable
+PyMODINIT_FUNC PyInit_getpoints() {
+    return PyModule_Create(&getpoints_module);
 }
-

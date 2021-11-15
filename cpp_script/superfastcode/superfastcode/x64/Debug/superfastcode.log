@@ -1,3 +1,4 @@
-﻿  module.cpp
-     Création de la bibliothèque C:\Users\hadri\Documents\3A\PR309-ProjetAvance\WrappingCppPy\python_script\PythonApplication1\x64\Debug\superfastcode.lib et de l'objet C:\Users\hadri\Documents\3A\PR309-ProjetAvance\WrappingCppPy\python_script\PythonApplication1\x64\Debug\superfastcode.exp
-  superfastcode.vcxproj -> C:\Users\hadri\Documents\3A\PR309-ProjetAvance\WrappingCppPy\python_script\PythonApplication1\x64\Debug\superfastcode.pyd
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (superfastcode.vcxproj). Cela peut entraîner un comportement de nettoyage et de regénération incorrect.
+  module.cpp
+     Création de la bibliothèque C:\Users\hadri\Documents\3A\PR309-ProjetAvance\68landmarks_wrapping\python_script\PythonApplication1\x64\Debug\getpoints.lib et de l'objet C:\Users\hadri\Documents\3A\PR309-ProjetAvance\68landmarks_wrapping\python_script\PythonApplication1\x64\Debug\getpoints.exp
+  superfastcode.vcxproj -> C:\Users\hadri\Documents\3A\PR309-ProjetAvance\68landmarks_wrapping\python_script\PythonApplication1\x64\Debug\getpoints.pyd
